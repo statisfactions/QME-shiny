@@ -1,6 +1,11 @@
 library(shiny)
 library(QME)
 
+
+# ui -------------------------------------------------------
+
+
+
 ui <- fluidPage(
   sidebarPanel(
   fileInput('file1', 'Bring in Dataset CSV/TXT File',
@@ -39,6 +44,11 @@ ui <- fluidPage(
     )
   )
 )
+
+
+# server ------------------------------------------------------------------
+
+
 
 server <- function(input, output) {
   originalFileInput <- reactive({
