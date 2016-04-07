@@ -45,8 +45,7 @@ shinyUI(fluidPage(
       ),
       tabPanel("Summary",
                br(),
-               hr("Descriptive Statistics"),
-               verbatimTextOutput("sum_stats"),
+               htmlOutput("knit_doc"),
                br()
                
       )

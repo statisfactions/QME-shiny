@@ -6,6 +6,8 @@
 #
 
 library(shiny)
+library(QME)
+library(readr)
 
 shinyServer(function(input, output) {
   originalFileInput <- reactive({
@@ -59,8 +61,27 @@ shinyServer(function(input, output) {
     head(keyFileInput(), n=10)  
   })
   
-  output$sum_stats <- renderPrint({
-    analysis1()
+  output$knit_doc <- renderPrint({
+
+      capture.output(
+      md <- isolate(tryCatch(
+        suppressMessages(
+          suppressWarnings(
+           psycho_report(analysis1(), quiet = TRUE, simple_html = TRUE))),
+        error = function(e) {FALSE}))
+    )
+    if(exists("md")) {
+      if(md == FALSE)
+        out = "Rendering..."
+      else
+        out = HTML(md)
+    }
+    else
+      out = "Rendering..."
+    
+    return(out)
   })
+  
+
   
 })
