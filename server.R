@@ -17,11 +17,9 @@ shinyServer(function(input, output) {
       return(NULL)
     
     if (input$rownames) {
-      read.table(in.file$datapath, header=input$header, sep=input$sep,
-                 quote=input$quote, row.names=1)
+      read.table(in.file$datapath, header=TRUE, sep=",", row.names=1)
     } else {
-      read.table(in.file$datapath, header=input$header, sep=input$sep,
-                 quote=input$quote)
+      read.table(in.file$datapath, header=TRUE, sep=",")
     }
   })
 
@@ -31,13 +29,8 @@ shinyServer(function(input, output) {
     
     if (is.null(key.file))
       return(NULL)
-    
-    # if (input$rownames1) {
-    #   read.table(key.file$datapath, header=input$header1, sep=input$sep1,
-    #              quote=input$quote1, row.names=input$rownames1)
-    # } 
     else {
-      read.table(key.file$datapath, header=input$header1, sep=input$sep1, quote=input$quote1)
+      read.table(key.file$datapath, header=TRUE, sep=",")
     }
   })
   
